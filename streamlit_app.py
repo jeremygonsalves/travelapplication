@@ -1,5 +1,5 @@
 import streamlit as st
 
-st.title('🎈 App Name')
+st.title('✈️ Travel Companion')
 
-st.write('Hello world!')
+st.info('This is an app for custom implimentation for travel')
