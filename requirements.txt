@@ -12,4 +12,4 @@ torch
 torchvision
 sentence_transformers
 transformers
-
+dotenv
