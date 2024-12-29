@@ -1,9 +1,7 @@
-# 📦 Streamlit App Starter Kit 
-```
-⬆️ (Replace above with your app's name)
-```
+# ✈️ Travel App 
 
-Description of the app ...
+
+This is a custom travel application that uses ML for personalized user interaction
 
 ## Demo App
 
