@@ -5,8 +5,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.preprocessing import StandardScaler
 from models import get_recommendations
 
-
-
 # Title and info section
 st.title('✈️ Travel Companion')
 st.info('This is an app for custom implementation for travel recommendations')
@@ -14,9 +12,10 @@ st.info('This is an app for custom implementation for travel recommendations')
 # Collecting user preferences
 st.header('Tell us about your travel preferences')
 
-# User input form
+
+# Add 'Any' to the options list to make it a valid default option
 continent = st.selectbox('Select Continent', ['Any', 'Europe', 'North America', 'Asia', 'Australia'])
-continents = st.multiselect('Select Continents', ['Europe', 'North America', 'Asia', 'Australia'], default=['Any'])
+continents = st.multiselect('Select Continents', ['Any', 'Europe', 'North America', 'Asia', 'Australia'], default=['Any'])
 
 # Fetch destinations based on selected continents
 def fetch_destinations(continents):
@@ -102,4 +101,3 @@ if st.button('Get Travel Recommendations'):
         st.write(f"**Duration:** {row['duration']} days")
         st.write(f"**Activities:** {row['activities']}")
         st.write('---')
-
