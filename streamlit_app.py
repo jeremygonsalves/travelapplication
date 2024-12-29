@@ -3,6 +3,9 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.preprocessing import StandardScaler
+from models import get_recommendations
+
+
 
 # Title and info section
 st.title('✈️ Travel Companion')
@@ -12,34 +15,17 @@ st.info('This is an app for custom implementation for travel recommendations')
 st.header('Tell us about your travel preferences')
 
 # User input form
-destination = st.text_input('Preferred Destination', 'Enter a city or country')
 continent = st.selectbox('Select Continent', ['Any', 'Europe', 'North America', 'Asia', 'Australia'])
-if continent == 'Any':
-    destination_options = df['destination'].unique()
-else:
-    continent_destinations = {
-        'Europe': ['Paris', 'London', 'Barcelona'],
-        'North America': ['New York'],
-        'Asia': ['Tokyo', 'Bali'],
-        'Australia': ['Sydney']
-    }
-    destination_options = continent_destinations.get(continent, [])
-
-destination = st.selectbox('Preferred Destination', ['Any'] + list(destination_options))
 continents = st.multiselect('Select Continents', ['Europe', 'North America', 'Asia', 'Australia'], default=['Any'])
-if 'Any' in continents:
-    destination_options = df['destination'].unique()
-else:
-    continent_destinations = {
-        'Europe': ['Paris', 'London', 'Barcelona'],
-        'North America': ['New York'],
-        'Asia': ['Tokyo', 'Bali'],
-        'Australia': ['Sydney']
-    }
-    destination_options = []
-    for continent in continents:
-        destination_options.extend(continent_destinations.get(continent, []))
 
+# Fetch destinations based on selected continents
+def fetch_destinations(continents):
+    if 'Any' in continents:
+        return df['destination'].unique()
+    else:
+        return get_recommendations(continents)
+
+destination_options = fetch_destinations(continents)
 destination = st.selectbox('Preferred Destination', ['Any'] + list(destination_options))
 travel_type = st.selectbox('What type of travel experience are you looking for?',
                            ['Adventure', 'Relaxation', 'Culture', 'Nature', 'Beach', 'City', 'Other'])
