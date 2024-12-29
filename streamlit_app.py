@@ -13,6 +13,34 @@ st.header('Tell us about your travel preferences')
 
 # User input form
 destination = st.text_input('Preferred Destination', 'Enter a city or country')
+continent = st.selectbox('Select Continent', ['Any', 'Europe', 'North America', 'Asia', 'Australia'])
+if continent == 'Any':
+    destination_options = df['destination'].unique()
+else:
+    continent_destinations = {
+        'Europe': ['Paris', 'London', 'Barcelona'],
+        'North America': ['New York'],
+        'Asia': ['Tokyo', 'Bali'],
+        'Australia': ['Sydney']
+    }
+    destination_options = continent_destinations.get(continent, [])
+
+destination = st.selectbox('Preferred Destination', ['Any'] + list(destination_options))
+continents = st.multiselect('Select Continents', ['Europe', 'North America', 'Asia', 'Australia'], default=['Any'])
+if 'Any' in continents:
+    destination_options = df['destination'].unique()
+else:
+    continent_destinations = {
+        'Europe': ['Paris', 'London', 'Barcelona'],
+        'North America': ['New York'],
+        'Asia': ['Tokyo', 'Bali'],
+        'Australia': ['Sydney']
+    }
+    destination_options = []
+    for continent in continents:
+        destination_options.extend(continent_destinations.get(continent, []))
+
+destination = st.selectbox('Preferred Destination', ['Any'] + list(destination_options))
 travel_type = st.selectbox('What type of travel experience are you looking for?',
                            ['Adventure', 'Relaxation', 'Culture', 'Nature', 'Beach', 'City', 'Other'])
 
