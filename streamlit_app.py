@@ -15,7 +15,7 @@ st.header('Tell us about your travel preferences')
 
 # Add 'Any' to the options list to make it a valid default option
 continent = st.selectbox('Select Continent', ['Any', 'Europe', 'North America', 'Asia', 'Australia'])
-continents = st.multiselect('Select Continents', ['Any', 'Europe', 'North America', 'Asia', 'Australia'], default=['Any'])
+continents = st.multiselect('Select Continents of Interest', ['Any', 'Europe', 'North America', 'Asia', 'Australia'], default=[''])
 
 # Fetch destinations based on selected continents
 def fetch_destinations(continents):

@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()   # Load environment variables from .env file
-open_ai_key = os.getenv('OPENAI_API_KEY')
+open_ai_key = os.getenv('OPEN_API_KEY')
 openai.api_key = open_ai_key
 
 def get_recommendations(continent):
